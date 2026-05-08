@@ -19,7 +19,7 @@ jobs:
       - name: 设置python环境
         uses: actions/setup-python@v6  # 升级到支持Node 24的v6版本
         with:
-          python-version: '3.9'
+          python-version: '3.11'
 
       - name: 安装依赖包
         run: |
