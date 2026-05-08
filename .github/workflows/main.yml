@@ -1,29 +1,29 @@
 name: 刷课
- 
-on: 
+on:
   push:
     branches: [ main ]
-  #是否开始每天8点定时刷课，若要开启请把下面两行注释去掉
-  #schedule:
-  #  - cron: "0 8 * * *" 
-    
-jobs: 
+#是否开始每天8点定时刷课，若要开启请把下面两行注释去掉
+#schedule:
+#  - cron: "0 8 * * *"
+
+jobs:
   Start:
-    runs-on: ubuntu-latest # 在最新版本的 Ubuntu 操作系统环境下运行
-    steps: # 要执行的步骤
+    runs-on: ubuntu-latest
+    # 提前开启 Node.js 24 模式（可选，和升级Action版本双保险）
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    steps:
       - name: 拷贝代码
-        uses: actions/checkout@v3  # 用于将github代码仓库的代码拷贝到工作目录中
- 
+        uses: actions/checkout@v5  # 升级到支持Node 24的v5版本
+
       - name: 设置python环境
-        uses: actions/setup-python@v2 # 用于设置 Python 环境，它允许你指定要在工作环境中使用的 Python 版本
+        uses: actions/setup-python@v6  # 升级到支持Node 24的v6版本
         with:
-          python-version: '3.9'  # 选择要用的Python版本
- 
+          python-version: '3.9'
+
       - name: 安装依赖包
-        run: | # 安装依赖包
-          pip install -r ./requirements.txt 
-          
-      
+        run: |
+          pip install -r ./requirements.txt
+
       - name: Run main.py
-        run: python main.py -u 13882965822 -p You1980ling023 -l 257162439
-        #课程id，默认为心理课的
+        run: python main.py -u 13882965822 -p You19801ing023 -l 257162439
